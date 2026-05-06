@@ -1,0 +1,18 @@
+class Solution:
+    def findNthDigit(self, n: int) -> int:
+        digit = 1
+        start = 1
+        count = 9
+
+        # Find the range where nth digit exists
+        while n > digit * count:
+            n -= digit * count
+            digit += 1
+            count *= 10
+            start *= 10
+
+        # Find actual number
+        number = start + (n - 1) // digit
+
+        # Find digit inside number
+        return int(str(number)[(n - 1) % digit])
